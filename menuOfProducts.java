@@ -9,4 +9,9 @@ public class menuOfProducts extends Product  {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
+    public static Product[] getProducts() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getProducts'");
+    }
+
 }
