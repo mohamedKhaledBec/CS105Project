@@ -1,3 +1,3 @@
-public class Expenses {
-
+public interface  Expenses {
+    double calculateExpenses();
 }
