@@ -6,7 +6,7 @@ public class Food extends Product {
 
  
     public double calculateExpenses() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return getPurchasePrice()+getUtilityCost();
     }
 
 }
