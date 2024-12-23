@@ -49,7 +49,7 @@ public class menuOfProducts extends Product  {
 // <<<<<<< Updated upstream
 // =======
     public  static ArrayList<Product> getProducts() {
-        return this.products;
+        return menuOfProducts.products;
     }
 
 // >>>>>>> Stashed changes
