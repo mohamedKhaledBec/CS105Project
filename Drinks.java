@@ -5,8 +5,8 @@ public class Drinks extends Product{
         super(name, purchasePrice, sellingPrice,0);
     }
 
-    public double calculateExpenses() {
-        return getPurchasePrice();
+    public double calculateExpense() {
+        return getPurchasePrice()+getUtilityCost();
         
     }
 

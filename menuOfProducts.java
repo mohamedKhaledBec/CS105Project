@@ -11,11 +11,12 @@ public class menuOfProducts extends Product  {
         products.add(product);
     }
 
+    @Override
     public double calculateExpense() {
         double totalExpense=0;
-        for(Product product : products){
-            totalExpense+=product.calculateExpense();
-        }
+         for(Product product : products){
+             totalExpense+=product.calculateExpense();
+         }
         return totalExpense;
         
     }
@@ -27,14 +28,14 @@ public class menuOfProducts extends Product  {
             double discount=0;
             if(product instanceof Food){
                 discount=0.1;
-            }else if(product instanceof Desert){
+            }else if(product instanceof Dessert){
                 discount=0.2;
             }else if(product instanceof Drinks){
                 discount=0.5;
             }
-            totalSellingPrice+=product.getSellingPrice()*(1-discount);
+            totalSellingPrice+=Product.getSellingPrice()*(1-discount);
         }
-        //setSellingPrice updates for the menu Product might be better if we just return since we need this value to be printed for the user
+        
         setSellingPrice(totalSellingPrice);
     }
 
@@ -42,7 +43,7 @@ public class menuOfProducts extends Product  {
     public void listMenuProducts() {
         System.out.println("Menu Products:");
         for (Product product : products) {
-            System.out.println("- " + product.getName() + " ($" + product.getSellingPrice() + ")");
+            System.out.println("- " + product.getName() + " ($" + Product.getSellingPrice() + ")");
         }
     }
 

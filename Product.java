@@ -1,8 +1,7 @@
-
-public abstract class Product implements Expenses {
+public abstract class Product implements Expense {
     private String name;
     private double purchasePrice;
-    private double sellingPrice;
+    private static double sellingPrice; 
     private double utilityCost;
 
     protected Product(String name, double purchasePrice, double sellingPrice, double utilityCost) {
@@ -15,7 +14,6 @@ public abstract class Product implements Expenses {
     protected Product(String name) {
         this(name, 0, 0, 0);
     }
-
 
     public String getName() {
         return name;
@@ -33,7 +31,7 @@ public abstract class Product implements Expenses {
         this.purchasePrice = purchasePrice;
     }
 
-    public double getSellingPrice() {
+    public static double getSellingPrice() {
         return sellingPrice;
     }
 
@@ -51,8 +49,10 @@ public abstract class Product implements Expenses {
 
     @Override
     public String toString() {
-        return super.toString();//to be implemented later
+        return "Product{name='" + name + "', purchasePrice=" + purchasePrice + 
+               ", sellingPrice=" + sellingPrice + ", utilityCost=" + utilityCost + "}";
     }
 
-
+    @Override
+    public abstract double calculateExpense();
 }
