@@ -12,7 +12,7 @@ public class Waiter extends Employee {
         orders.add(neworder);
     }
     public ArrayList<order> getOrdersReceived(){
-        return orders;
+        return new ArrayList<>(orders);
     }
     public double calculateExpense(){
         double totalExpense = 0.0;
