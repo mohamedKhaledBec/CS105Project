@@ -6,8 +6,10 @@ public class Waiter extends Employee {
         super(id, name);
         this.orders = new ArrayList<>();
     }
-    public void createOrder(order productordered){
-        orders.add(productordered);
+    public void createOrder(Product productOrdered){
+        order neworder = new order();
+        neworder.addProduct(productOrdered);
+        orders.add(neworder);
     }
     public ArrayList<order> getOrdersReceived(){
         return orders;
