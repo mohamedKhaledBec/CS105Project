@@ -10,7 +10,7 @@ public class Waiter extends Employee {
         order neworder = new order();
         neworder.addProduct(productOrdered);
         orders.add(neworder);
-        System.out.println("Order created and added to the waiters list.");
+        System.out.println("Order created and added to the waiter's list.");
     }
     public ArrayList<order> getOrdersReceived(){
         return new ArrayList<>(orders);
