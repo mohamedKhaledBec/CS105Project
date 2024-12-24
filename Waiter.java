@@ -24,5 +24,9 @@ public class Waiter extends Employee {
 
 
     }
+    @Override
+    public String toString(){
+        return "Waiter" + getName() + "(Id=" + getId() + ") has total orders of" + orders.size();
+    }
     
 }
