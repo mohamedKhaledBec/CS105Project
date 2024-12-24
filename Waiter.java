@@ -17,8 +17,8 @@ public class Waiter extends Employee {
     }
     public double calculateExpense(){
         double totalExpense = 0.0;
-        for (order productordered : orders){
-            totalExpense += order.sellingPrice();
+        for (order i : orders){
+            totalExpense += i.calculateTotalPrice();
         }
         return totalExpense*0.10;
 
