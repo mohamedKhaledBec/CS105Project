@@ -89,11 +89,11 @@ public class CoffeeShop {
         productsList.add(breakfastMenu); // Add the menu to the products list
 
 
-        menuOfProducts lunchMenu = new menuOfProducts("lunch Combo");
-        breakfastMenu.addProduct(productsList.get(0)); // Sandwich
-        breakfastMenu.addProduct(productsList.get(2)); // Coffee
-        breakfastMenu.calculateMenuPrice(); // Calculate price based on logic
-        productsList.add(breakfastMenu); 
+        menuOfProducts lunchMenu = new menuOfProducts("Lunch Combo");
+        lunchMenu.addProduct(productsList.get(0)); // Sandwich
+        lunchMenu.addProduct(productsList.get(2)); // Coffee
+        lunchMenu.calculateMenuPrice(); // Calculate price based on logic
+        productsList.add(lunchMenu); 
     }
 
     public void listProducts() {
