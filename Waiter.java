@@ -2,9 +2,10 @@ import java.util.ArrayList;
 
 public class Waiter extends Employee {
     private ArrayList<order> orders; // Storing orders using lowercase 'order'
-
-    public Waiter(int id, String name) {
+    private double salary;
+    public Waiter(int id, String name,double salary) {
         super(id, name);
+        this.salary=salary;
         this.orders = new ArrayList<>();
     }
 

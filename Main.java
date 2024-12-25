@@ -116,7 +116,9 @@ public class Main {
                 case 3:
                     System.out.print("Enter waiter's name: ");
                     String waiterName = scanner.nextLine();
-                    coffeeShop.addWaiter(waiterName);
+                    System.out.print("Enter waiter's salary: ");
+                    double waiterSalary = scanner.nextDouble();
+                    coffeeShop.addWaiter(waiterName,waiterSalary);
                     System.out.println("Waiter added.");
                     break;
                 case 4:
