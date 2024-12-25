@@ -224,7 +224,7 @@ public class Main {
                         double purchasePrice = scanner.nextDouble();
 
                         // Add product to the coffee shop
-                        coffeeShop.addProduct( productName, sellingPrice, utilityCost, purchasePrice,productType,null);
+                        coffeeShop.addProduct( productName, purchasePrice, sellingPrice, utilityCost,productType,null);
                         System.out.println("Product added successfully!");
 
                 
