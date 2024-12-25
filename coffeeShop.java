@@ -7,7 +7,7 @@ public class CoffeeShop {
     private ArrayList<Barista> barList;
     private ArrayList<Waiter> waiList;
     private ArrayList<order> orderList;
-    private ArrayList<Product> productsList;
+    private static ArrayList<Product> productsList;
     private int nextEmployeeId;
 
     public CoffeeShop() {
@@ -52,13 +52,15 @@ public class CoffeeShop {
         }
     }
 
+
+
     public double calculateExpenses() {
         double totalExpenses = 0;
         for (Employee emp : empList) {
             totalExpenses += emp.calculateExpense();
         }
         for (order ord : orderList) {
-            totalExpenses += ord.calculateTotalPrice();
+            totalExpenses += ord.calculateTotalExpense();
         }
         return totalExpenses;
     }
@@ -70,7 +72,7 @@ public class CoffeeShop {
                 totalRevenue += prod.getSellingPrice();
             }
         }
-        return totalRevenue;
+        return totalRevenue-this.calculateExpenses();
     }
 
     public void initProducts() {
@@ -85,21 +87,78 @@ public class CoffeeShop {
         breakfastMenu.addProduct(productsList.get(2)); // Coffee
         breakfastMenu.calculateMenuPrice(); // Calculate price based on logic
         productsList.add(breakfastMenu); // Add the menu to the products list
+
+
+        menuOfProducts lunchMenu = new menuOfProducts("lunch Combo");
+        breakfastMenu.addProduct(productsList.get(0)); // Sandwich
+        breakfastMenu.addProduct(productsList.get(2)); // Coffee
+        breakfastMenu.calculateMenuPrice(); // Calculate price based on logic
+        productsList.add(breakfastMenu); 
     }
 
     public void listProducts() {
         System.out.println("Available Products:");
+        int enumerate=1;
         for (Product product : productsList) {
             if (product instanceof menuOfProducts) {
-                System.out.println("Menu: " + product.getName());
+                System.out.println(enumerate+"- Menu: " + product.getName());
                 ((menuOfProducts) product).listMenuProducts();
+                enumerate++;
             } else {
-                System.out.println("- " + product.getName() + " ($" + product.getSellingPrice() + ")");
+                System.out.println(enumerate+"- " + product.getName() + " ($" + product.getSellingPrice() + ")");
+            enumerate++;
             }
         }
+
+    }
+    
+    public void addProduct(String name, double purchasePrice, double sellingPrice, double utilityCost,String type,ArrayList<Integer> productsIds) {
+        switch (type) {
+            case "Food": 
+                productsList.add(new Food(name, purchasePrice, sellingPrice, utilityCost));
+                break;
+            case "Dessert":
+                productsList.add(new Dessert(name, purchasePrice, sellingPrice, utilityCost));
+                break;
+            case "Drinks":
+                productsList.add(new Drinks(name, purchasePrice, sellingPrice));
+                break;
+            case "Menu":
+            menuOfProducts breakfastMenu = new menuOfProducts("Breakfast Combo");
+            breakfastMenu.addProduct(productsList.get(0)); // Sandwich
+            breakfastMenu.addProduct(productsList.get(2)); // Coffee
+            breakfastMenu.calculateMenuPrice(); // Calculate price based on logic
+            
+                menuOfProducts menu = new menuOfProducts(name);
+                for (Integer id : productsIds) {
+                    menu.addProduct(productsList.get(id));
+                }
+                menu.calculateMenuPrice();
+                productsList.add(menu);
+                break;
+            default:
+                throw new AssertionError();
+        }
+    }
+    public void configMenu(ArrayList<Integer> menu , menuOfProducts menuOfProducts){
+        for (int i = 0; i < menu.size(); i++) {
+            menuOfProducts.addProduct(productsList.get(menu.get(i)));
+        }
+    }
+    public static ArrayList<Product> getProducts() {
+        return productsList;
     }
 
-    public ArrayList<Product> getProducts() {
-        return productsList;
+    public void addOrder(order order) {
+        orderList.add(order);
+        
+    }
+
+    public ArrayList<Barista> getBarList() {
+        return barList;
+    }
+
+    public ArrayList<Waiter> getWaiList() {
+        return waiList;
     }
 }

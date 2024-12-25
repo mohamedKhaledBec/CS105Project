@@ -33,7 +33,7 @@ public class menuOfProducts extends Product  {
             }else if(product instanceof Drinks){
                 discount=0.5;
             }
-            totalSellingPrice+=Product.getSellingPrice()*(1-discount);
+            totalSellingPrice+=product.getSellingPrice()*(1-discount);
         }
         
         setSellingPrice(totalSellingPrice);
@@ -41,10 +41,12 @@ public class menuOfProducts extends Product  {
 
     //
     public void listMenuProducts() {
-        System.out.println("Menu Products:");
+        calculateMenuPrice();
         for (Product product : products) {
-            System.out.println("- " + product.getName() + " ($" + Product.getSellingPrice() + ")");
+            System.out.println("\t- " + product.getName() );
+
         }
+        System.out.println("\tTotal Price: $" + this.getSellingPrice());
     }
 
 // <<<<<<< Updated upstream
