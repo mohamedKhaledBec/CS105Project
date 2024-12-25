@@ -3,7 +3,15 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Main { 
+    public static void clearConsole() {
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
+    }
+
+    
+
     public static void mainScreen(CoffeeShop coffeeShop){
+    
         Scanner scanner = new Scanner(System.in);
         int choice = scanner.nextInt();
            
@@ -13,6 +21,7 @@ public class Main {
                 switch (choice) {
                     case 1:
                         if ((coffeeShop.getBarList().isEmpty() || coffeeShop.getWaiList().isEmpty())) {
+                            clearConsole();
                             System.out.println("No employees available to take orders!");
                             break;
                         }
@@ -26,11 +35,12 @@ public class Main {
                         System.out.println("Exiting the application. Goodbye!");
                         return;
                     default:
+                        clearConsole();
                         System.out.println("Invalid choice. Please try again.");
                 }
     }
     public static void main(String[] args) {
-        
+        clearConsole();
         CoffeeShop coffeeShop = new CoffeeShop();
 
         while (true) {
@@ -43,6 +53,7 @@ public class Main {
                 mainScreen(coffeeShop);
                 
             } catch (InputMismatchException e) {
+                clearConsole();
                 System.out.println("Invalid choice. ");
                 
                 
@@ -51,12 +62,14 @@ public class Main {
     }
 
     private static void createOrder(Scanner scanner, CoffeeShop coffeeShop) {
+        clearConsole();
         System.out.println("\n--- Create Order ---");
         order order = new order();
-        coffeeShop.assignWaiter();
+        Waiter waiter =coffeeShop.assignWaiter();
         ArrayList<Product> products = CoffeeShop.getProducts();
         while (true) {
             try{
+            
             System.out.println("\nMenu:");
             coffeeShop.listProducts(); 
             System.out.print("Enter product ID to add to the order (or 0 to finish): ");
@@ -68,6 +81,8 @@ public class Main {
             } catch (IndexOutOfBoundsException e) {
                 if (productId == 0) {
                     order.listOrder();
+                    waiter.addOrder(order);
+                    clearConsole();
                     System.out.println("Total Price: $" + order.calculateTotalPrice());
                     coffeeShop.addOrder(order);
                     break;
@@ -85,7 +100,7 @@ public class Main {
     }
 
     private static void manageCoffeeShop(Scanner scanner, CoffeeShop coffeeShop) {
-
+        clearConsole();
         while (true) {
             try{
             System.out.println("\n--- Manage Coffee Shop ---");
@@ -110,7 +125,13 @@ public class Main {
                     String baristaName = scanner.nextLine();
                     System.out.print("Enter barista's salary: ");
                     double baristaSalary = scanner.nextDouble();
+                    if (baristaSalary < 0) {
+                        clearConsole();
+                        System.out.println("Invalid salary. Please try again.");
+                        return;
+                    }
                     coffeeShop.addBarista(baristaName, baristaSalary);
+                    clearConsole();
                     System.out.println("Barista added.");
                     break;
                 case 3:
@@ -118,16 +139,25 @@ public class Main {
                     String waiterName = scanner.nextLine();
                     System.out.print("Enter waiter's salary: ");
                     double waiterSalary = scanner.nextDouble();
+                    if (waiterSalary < 0) {
+                        clearConsole();
+                        System.out.println("Invalid salary. Please try again.");
+                        return;
+                    }
                     coffeeShop.addWaiter(waiterName,waiterSalary);
+                    clearConsole();
                     System.out.println("Waiter added.");
                     break;
                 case 4:
+                    clearConsole();
                     System.out.println("Total Expenses: $" + coffeeShop.calculateExpenses());
                     break;
                 case 5:
+                    clearConsole();
                     System.out.println("Total Revenue: $" + coffeeShop.calculateRevenue());
                     break;
                 case 6:
+                    clearConsole();
                     System.out.println("Select product type:");
                     System.out.println("1. Food");
                     System.out.println("2. Dessert");
@@ -202,12 +232,15 @@ public class Main {
                 case 7:
                     return;
                 default:
+                    clearConsole();
                     System.out.println("Invalid choice. Please try again.");
             }
         }
         catch (Exception e) {
+            clearConsole();
             System.out.println("Invalid choice. Please try again.");
             break;
         }}
     }
+    
 }

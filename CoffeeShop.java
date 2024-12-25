@@ -72,7 +72,7 @@ public class CoffeeShop {
                 totalRevenue += prod.getSellingPrice();
             }
         }
-        return totalRevenue-this.calculateExpenses();
+        return totalRevenue*0.9-this.calculateExpenses();//10% is taken by the waiter the rest is the revenue
     }
 
     public void initProducts() {
