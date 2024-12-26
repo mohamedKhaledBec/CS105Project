@@ -76,23 +76,23 @@ public class CoffeeShop {
     }
 
     public void initProducts() {
-        // Sample individual products
+        
         productsList.add(new Food("Sandwich", 3.0, 5.0, 1.0));
         productsList.add(new Dessert("Cake", 2.0, 4.0, 1.5));
         productsList.add(new Drinks("Coffee", 1.0, 3.0));
 
-        // Menu
+        // Menus
         menuOfProducts breakfastMenu = new menuOfProducts("Breakfast Combo");
         breakfastMenu.addProduct(productsList.get(0)); // Sandwich
         breakfastMenu.addProduct(productsList.get(2)); // Coffee
-        breakfastMenu.calculateMenuPrice(); // Calculate price based on logic
+        breakfastMenu.calculateMenuPrice(); // Calculate price 
         productsList.add(breakfastMenu); // Add the menu to the products list
 
 
         menuOfProducts lunchMenu = new menuOfProducts("lunch Combo");
         lunchMenu.addProduct(productsList.get(0)); // Sandwich
         lunchMenu.addProduct(productsList.get(2)); // Coffee
-        lunchMenu.calculateMenuPrice(); // Calculate price based on logic
+        lunchMenu.calculateMenuPrice(); // Calculate price 
         productsList.add(lunchMenu); // Add the menu to the products list
     }
 
@@ -133,11 +133,7 @@ public class CoffeeShop {
             
                 menuOfProducts menu = new menuOfProducts(name);
                 for (Integer id : productsIds) {
-                    // if (id>productsList.size()) {
-                    //     System.out.println("Product with id "+id+" does not exist");
-                    //     productsIds.remove(id);
-                        
-                    // }}
+                   
                     if (productsList.get(id) instanceof menuOfProducts) {
                         for (Product product : ((menuOfProducts) productsList.get(id)).getProducts()) {
                             menu.addProduct(product);
@@ -154,11 +150,7 @@ public class CoffeeShop {
                 throw new AssertionError();
         }
     }
-    public void configMenu(ArrayList<Integer> menu , menuOfProducts menuOfProducts){
-        for (int i = 0; i < menu.size(); i++) {
-            menuOfProducts.addProduct(productsList.get(menu.get(i)));
-        }
-    }
+
     public static ArrayList<Product> getProducts() {
         return productsList;
     }
