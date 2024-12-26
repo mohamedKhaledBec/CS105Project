@@ -13,8 +13,11 @@ public class order {
 
     //menu page
     void listOrder() {
-        Product[] products1 = menuOfProducts.getProducts();
-        System.out.println(products1);
+        
+        for (Product product : purchaseList) {
+            System.out.println(product);
+        }
+        
     }
 
 
@@ -25,9 +28,20 @@ public class order {
     double calculateTotalPrice() {
         double totalPrice=0.0;
         for (Product product : purchaseList) {
-            totalPrice=+product.calculateExpenses();
+            totalPrice+=product.getSellingPrice();
+            
         }
+        
         return totalPrice;
     }
+    double calculateTotalExpense() {
+        double totalExpense=0;
+        for(Product product : purchaseList){
+            totalExpense+=product.calculateExpense();
+        }
+        return totalExpense;
+        
+    }
 
+    
 }

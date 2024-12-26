@@ -1,12 +1,13 @@
 public class Drinks extends Product{
-
     
-    public Drinks(String name, double purchasePrice, double sellingPrice, double utilityCost) {
-        super(name, purchasePrice, sellingPrice, utilityCost);
+    
+    public Drinks(String name, double purchasePrice, double sellingPrice) {
+        super(name, purchasePrice, sellingPrice,0);
     }
 
-    public double calculateExpenses() {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public double calculateExpense() {
+        return getPurchasePrice()+getUtilityCost();
+        
     }
 
 }
