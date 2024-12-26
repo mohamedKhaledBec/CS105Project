@@ -55,7 +55,7 @@ public class Main {
                 
             } catch (InputMismatchException e) {
                 clearConsole();
-                System.out.println("Invalid choice. ");
+                System.out.println("Invalid choice. restarting the application....");
                 
                 
                 }
@@ -89,7 +89,7 @@ public class Main {
                     coffeeShop.addOrder(order);
                     break;
                 }
-                System.out.println("Invalid product ID. Please try again.");
+                System.out.println("Invalid product ID. restarting the system....");
             }
         
         }
@@ -207,15 +207,7 @@ public class Main {
                             }
                             
                         }
-                        // String productID = scanner.nextLine();
-                        // for (String s1 : productID.split("")) { // Split input by spaces
-                        //     try {
-                        //         int id = Integer.parseInt(s1); 
-                        //         productIDs.add(id); 
-                        //     } catch (NumberFormatException e) {
-                               
-                        //     }
-                        // }
+                        
                    
                         System.out.print("Product to be added to the menu");
 

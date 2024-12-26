@@ -10,26 +10,20 @@ public class Waiter extends Employee {
         this.orders = new ArrayList<>();
     }
 
-    // Create a new order with a product and add it to the list of orders
-    // public void createOrder(Product productOrdered) {
-    //     order newOrder = new order(); // Create a new order instance
-    //     newOrder.addProduct(productOrdered); // Add the product to the order
-    //     orders.add(newOrder); // Add the new order to the waiter's list
-    //     System.out.println("Order created and added to the waiter's list.");
-    // }
+   
     public void addOrder(order order) {
         orders.add(order);
     }
-    // Retrieve all orders assigned to this waiter
+    
     public ArrayList<order> getOrdersReceived() {
-        return new ArrayList<>(orders); // Return a copy to protect the internal list
+        return new ArrayList<>(orders); 
     }
 
-    // Calculate total income (10% of the total price of all orders)
+    
     public double calculateExpense() {
         double totalExpense = 0.0;
         for (order ord : orders) {
-            totalExpense += ord.calculateTotalPrice(); // Use order's total price
+            totalExpense += ord.calculateTotalPrice(); 
         }
         return totalExpense * 0.10+this.salary*this.taxRate; // Waiter gets 10% of the total
     }
