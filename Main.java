@@ -71,7 +71,7 @@ public class Main {
             try{
             
             System.out.println("\nMenu:");
-            coffeeShop.listProducts(); 
+            coffeeShop.listProducts(true); 
             System.out.print("Enter product ID to add to the order (or 0 to finish): ");
             int productId = scanner.nextInt();
             scanner.nextLine();
@@ -81,9 +81,10 @@ public class Main {
             } catch (IndexOutOfBoundsException e) {
                 if (productId == 0) {
                     order.listOrder();
-                    waiter.addOrder(order);
+                    
                     clearConsole();
                     System.out.println("Total Price: $" + order.calculateTotalPrice());
+                    waiter.addOrder(order);
                     coffeeShop.addOrder(order);
                     break;
                 }
@@ -189,18 +190,32 @@ public class Main {
                     if (productType.equals("Menu")) {
                         System.out.print("Enter menu name: ");
                         String productName = scanner.nextLine();
-                        System.out.print("Enter the numbers of the products in the menu: ");
-                        coffeeShop.listProducts();
+                        System.out.print("Enter the number of the products in the menu: (o to finish) ");
+                        coffeeShop.listProducts(false);
                         ArrayList<Integer> productIDs = new ArrayList<>();
-                        String productID = scanner.nextLine();
-                        for (String s1 : productID.split("")) { // Split input by spaces
+                        while (true) {
                             try {
-                                int id = Integer.parseInt(s1); 
-                                productIDs.add(id); 
-                            } catch (NumberFormatException e) {
-                               
+                                int productID = scanner.nextInt();
+                                if (productID == 0) {
+                                    break;
+                                }
+                                productIDs.add(productID - 1);
+                            } catch (InputMismatchException e) {
+                                System.out.println("Invalid product ID. Please try again.");
+                                scanner.nextLine(); // Consume newline left-over
                             }
+                            
                         }
+                        String productID = scanner.nextLine();
+                        // for (String s1 : productID.split("")) { // Split input by spaces
+                        //     try {
+                        //         int id = Integer.parseInt(s1); 
+                        //         productIDs.add(id); 
+                        //     } catch (NumberFormatException e) {
+                               
+                        //     }
+                        // }
+                   
                         System.out.println("Product to be added to the menu"+productIDs);
 
                         coffeeShop.addProduct(productName, 0, 0, 0,productType,productIDs);
@@ -223,7 +238,7 @@ public class Main {
                         double purchasePrice = scanner.nextDouble();
 
                         // Add product to the coffee shop
-                        coffeeShop.addProduct( productName, sellingPrice, utilityCost, purchasePrice,productType,null);
+                        coffeeShop.addProduct( productName, purchasePrice, sellingPrice, utilityCost,productType,null);
                         System.out.println("Product added successfully!");
 
                 

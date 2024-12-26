@@ -72,7 +72,7 @@ public class CoffeeShop {
                 totalRevenue += prod.getSellingPrice();
             }
         }
-        return totalRevenue*0.9-this.calculateExpenses();//10% is taken by the waiter the rest is the revenue
+        return totalRevenue*0.9;//10% is taken by the waiter the rest is the revenue
     }
 
     public void initProducts() {
@@ -90,20 +90,24 @@ public class CoffeeShop {
 
 
         menuOfProducts lunchMenu = new menuOfProducts("lunch Combo");
-        breakfastMenu.addProduct(productsList.get(0)); // Sandwich
-        breakfastMenu.addProduct(productsList.get(2)); // Coffee
-        breakfastMenu.calculateMenuPrice(); // Calculate price based on logic
-        productsList.add(breakfastMenu); 
+        lunchMenu.addProduct(productsList.get(0)); // Sandwich
+        lunchMenu.addProduct(productsList.get(2)); // Coffee
+        lunchMenu.calculateMenuPrice(); // Calculate price based on logic
+        productsList.add(lunchMenu); // Add the menu to the products list
     }
 
-    public void listProducts() {
+    public void listProducts(boolean showMenu) {
         System.out.println("Available Products:");
         int enumerate=1;
         for (Product product : productsList) {
             if (product instanceof menuOfProducts) {
+                if (!showMenu) {
+                    continue;
+                }
+                else {
                 System.out.println(enumerate+"- Menu: " + product.getName());
                 ((menuOfProducts) product).listMenuProducts();
-                enumerate++;
+                enumerate++;}
             } else {
                 System.out.println(enumerate+"- " + product.getName() + " ($" + product.getSellingPrice() + ")");
             enumerate++;
@@ -124,14 +128,24 @@ public class CoffeeShop {
                 productsList.add(new Drinks(name, purchasePrice, sellingPrice));
                 break;
             case "Menu":
-            menuOfProducts breakfastMenu = new menuOfProducts("Breakfast Combo");
-            breakfastMenu.addProduct(productsList.get(0)); // Sandwich
-            breakfastMenu.addProduct(productsList.get(2)); // Coffee
-            breakfastMenu.calculateMenuPrice(); // Calculate price based on logic
+        
+             
             
                 menuOfProducts menu = new menuOfProducts(name);
                 for (Integer id : productsIds) {
-                    menu.addProduct(productsList.get(id));
+                    // if (id>productsList.size()) {
+                    //     System.out.println("Product with id "+id+" does not exist");
+                    //     productsIds.remove(id);
+                        
+                    // }}
+                    if (productsList.get(id-1) instanceof menuOfProducts) {
+                        for (Product product : ((menuOfProducts) productsList.get(id-1)).getProducts()) {
+                            menu.addProduct(product);
+                        }
+                        
+                    }
+
+                    menu.addProduct(productsList.get(id-1));
                 }
                 menu.calculateMenuPrice();
                 productsList.add(menu);

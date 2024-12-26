@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
 public class menuOfProducts extends Product  {
-    private static ArrayList<Product> products;
+    private  ArrayList<Product> products;
 
     public menuOfProducts(String name) {
         super(name);
@@ -36,7 +36,7 @@ public class menuOfProducts extends Product  {
             totalSellingPrice+=product.getSellingPrice()*(1-discount);
         }
         
-        setSellingPrice(totalSellingPrice);
+        this.setSellingPrice(totalSellingPrice);
     }
 
     //
@@ -51,8 +51,8 @@ public class menuOfProducts extends Product  {
 
 // <<<<<<< Updated upstream
 // =======
-    public  static ArrayList<Product> getProducts() {
-        return menuOfProducts.products;
+    public   ArrayList<Product> getProducts() {
+        return this.products;
     }
 
 // >>>>>>> Stashed changes
