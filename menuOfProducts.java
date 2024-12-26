@@ -23,8 +23,7 @@ public class menuOfProducts extends Product  {
     public void calculateMenuPrice(){
         double totalSellingPrice=0;
         for(Product product : products){
-            //discount is not needed here and can be remomved or costomed 
-            //discount was just an example for the restaurant type we are free to choose our values and alter whatever we want
+            
             double discount=0;
             if(product instanceof Food){
                 discount=0.1;
