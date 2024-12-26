@@ -25,7 +25,7 @@ public class Waiter extends Employee {
         for (order ord : orders) {
             totalExpense += ord.calculateTotalPrice(); 
         }
-        return totalExpense * 0.10+this.salary*this.taxRate; // Waiter gets 10% of the total
+        return totalExpense * 0.10 + this.salary*(1+this.taxRate); // Waiter gets 10% of the total
     }
 
     @Override
