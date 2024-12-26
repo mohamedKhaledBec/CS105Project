@@ -138,14 +138,14 @@ public class CoffeeShop {
                     //     productsIds.remove(id);
                         
                     // }}
-                    if (productsList.get(id-1) instanceof menuOfProducts) {
-                        for (Product product : ((menuOfProducts) productsList.get(id-1)).getProducts()) {
+                    if (productsList.get(id) instanceof menuOfProducts) {
+                        for (Product product : ((menuOfProducts) productsList.get(id)).getProducts()) {
                             menu.addProduct(product);
                         }
                         
                     }
 
-                    menu.addProduct(productsList.get(id-1));
+                    menu.addProduct(productsList.get(id));
                 }
                 menu.calculateMenuPrice();
                 productsList.add(menu);

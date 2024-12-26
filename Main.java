@@ -33,7 +33,8 @@ public class Main {
                         break;
                     case 3:
                         System.out.println("Exiting the application. Goodbye!");
-                        return;
+                        scanner.close();
+                        System.exit(0);
                     default:
                         clearConsole();
                         System.out.println("Invalid choice. Please try again.");
