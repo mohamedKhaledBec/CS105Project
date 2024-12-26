@@ -34,5 +34,10 @@ public class Waiter extends Employee {
         return totalExpense * 0.10+this.salary*this.taxRate; // Waiter gets 10% of the total
     }
 
+    @Override
+    public String toString() {
+        return super.toString()+" is a waiter"+ " with salary "+this.salary;
+    }
+
 
 }

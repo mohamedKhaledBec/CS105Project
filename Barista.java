@@ -14,5 +14,8 @@ public class Barista extends Employee {
     public double calculateExpense(){
         return this.salary+(this.salary*this.taxRate);
     }
+    public String toString(){
+        return super.toString()+" is a barista"+ " with salary "+this.salary;
+    }
 
 }
