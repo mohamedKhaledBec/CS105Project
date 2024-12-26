@@ -207,7 +207,7 @@ public class Main {
                             }
                             
                         }
-                        String productID = scanner.nextLine();
+                        // String productID = scanner.nextLine();
                         // for (String s1 : productID.split("")) { // Split input by spaces
                         //     try {
                         //         int id = Integer.parseInt(s1); 
@@ -217,7 +217,16 @@ public class Main {
                         //     }
                         // }
                    
-                        System.out.println("Product to be added to the menu"+productIDs);
+                        System.out.print("Product to be added to the menu");
+
+                        for (int i = 0; i < productIDs.size(); i++) {
+                            if (productIDs.get(i) >= coffeeShop.getProducts().size()) {
+                                productIDs.remove(i);
+                                i--;
+                            }
+                            System.out.print(productIDs.get(i)+1 + " ");
+                        }
+                        System.out.println();//to the next line
 
                         coffeeShop.addProduct(productName, 0, 0, 0,productType,productIDs);
                         
